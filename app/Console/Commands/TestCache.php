@@ -32,7 +32,7 @@ class TestCache extends Command
      */
     protected $description = 'Test Cache';
 
-    protected $iterations = 1000;
+    protected $iterations = 100;
 
     public function handle()
     {
@@ -100,6 +100,20 @@ class TestCache extends Command
             }
         }
 
+        $this->output->writeln("Cache tag forget test");
+        $this->output->writeln("=====================");
+        for ($i=1; $i<$this->iterations; $i++) {
+            $random_value = rand(100000, 9999999);
+
+            Cache::tags(['testone', 'testtwo'])->put('testthree', $random_value, 60);
+            Cache::tags(['testone', 'testtwo'])->forget('testthree');
+
+            $value_to_check = Cache::tags(['testone', 'testtwo'])->get('testthree');
+            if ($value_to_check == $random_value) {
+                $this->output->writeln("Iteration $i $random_value was stored and forgotten but also retrieved");
+            }
+        }
+
         $this->output->writeln("Cache tag flush test");
         $this->output->writeln("====================");
         for ($i=1; $i<$this->iterations; $i++) {
@@ -108,17 +122,20 @@ class TestCache extends Command
             Cache::tags(['testone', 'testtwo'])->put('testthree', $random_value, 60);
             Cache::tags(['testone', 'testtwo'])->flush();
 
-            $value_to_check = Cache::tags(['testone', 'testtwo'])->get('test');
+            $value_to_check = Cache::tags(['testone', 'testtwo'])->get('testthree');
             if ($value_to_check == $random_value) {
                 $this->output->writeln("Iteration $i $random_value was stored and flushed but also retrieved");
             }
         }
 
-        $this->output->writeln("Other Tests");
-        $this->output->writeln("===========");
+        $this->output->writeln("Test forgetting a key that does not exist");
+        $this->output->writeln("=========================================");
 
         // Should be able to forget something without an exception
         Cache::forget('mugwump');
+
+        $this->output->writeln("Test flushing");
+        $this->output->writeln("=============");
 
         // Ditto for flush
         Cache::flush();

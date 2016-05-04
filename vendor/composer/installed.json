@@ -3268,12 +3268,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/delatbabel/Laravel-Couchbase.git",
-            "reference": "d7463c946e6db003c32c90c3f8aa8320398f657b"
+            "reference": "1c75ffa635016f5b4d383a30dbb9f4e3604518af"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/delatbabel/Laravel-Couchbase/zipball/d7463c946e6db003c32c90c3f8aa8320398f657b",
-            "reference": "d7463c946e6db003c32c90c3f8aa8320398f657b",
+            "url": "https://api.github.com/repos/delatbabel/Laravel-Couchbase/zipball/1c75ffa635016f5b4d383a30dbb9f4e3604518af",
+            "reference": "1c75ffa635016f5b4d383a30dbb9f4e3604518af",
             "shasum": ""
         },
         "require": {
@@ -3298,7 +3298,7 @@
         "suggest": {
             "ext-couchbase": "for n1ql query builder, use bucket type couchbase require"
         },
-        "time": "2016-04-29 03:31:39",
+        "time": "2016-05-04 07:08:43",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
